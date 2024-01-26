@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-light-stroke-pressed-1: 179 179 179;
+    --color-light-stroke-hover-1: 199 199 199;
+    --color-light-stroke-base-3: 240 240 240;
+    --color-light-stroke-base-2: 224 224 224;
+    --color-light-stroke-base-1: 209 209 209;
+    --color-light-background-pressed-3: 214 214 214;
+    --color-light-background-pressed-2: 219 219 219;
+    --color-light-background-pressed-1: 224 224 224;
+    --color-light-background-hover-3: 235 235 235;
+    --color-light-background-hover-2: 240 240 240;
+    --color-light-background-hover-1: 245 245 245;
+    --color-light-background-base-3: 245 245 245;
+    --color-light-background-base-2: 250 250 250;
+    --color-light-background-base-1: 255 255 255;
+    --color-light-background-disabled: 240 240 240;
+    --color-light-background-alpha: 0 0 0;
+    --color-light-foreground-pressed-3: 66 66 66;
+    --color-light-foreground-pressed-2: 36 36 36;
+    --color-light-foreground-pressed-1: 36 36 36;
+    --color-light-foreground-hover-3: 66 66 66;
+    --color-light-foreground-hover-2: 36 36 36;
+    --color-light-foreground-hover-1: 36 36 36;
+    --color-light-foreground-base-3: 36 36 36;
+    --color-light-foreground-base-2: 66 66 66;
+    --color-light-foreground-base-1: 36 36 36;
+    --color-light-foreground-disabled: 189 189 189;
+
+    /* dark mode */
+    --color-dark-stroke-pressed-1: 107 107 107;
+    --color-dark-stroke-hover-1: 117 117 117;
+    --color-dark-stroke-base-3: 61 61 61;
+    --color-dark-stroke-base-2: 82 82 82;
+    --color-dark-stroke-base-1: 102 102 102;
+    --color-dark-background-pressed-3: 10 10 10;
+    --color-dark-background-pressed-2: 20 20 20;
+    --color-dark-background-pressed-1: 31 31 31;
+    --color-dark-background-hover-3: 41 41 41;
+    --color-dark-background-hover-2: 51 51 51;
+    --color-dark-background-hover-1: 61 61 61;
+    --color-dark-background-base-3: 20 20 20;
+    --color-dark-background-base-2: 31 31 31;
+    --color-dark-background-base-1: 41 41 41;
+    --color-dark-background-disabled: 20 20 20;
+    --color-dark-background-alpha: 0 0 0;
+    --color-dark-foreground-pressed-3: 214 214 214;
+    --color-dark-foreground-pressed-2: 255 255 255;
+    --color-dark-foreground-pressed-1: 255 255 255;
+    --color-dark-foreground-hover-2: 255 255 255;
+    --color-dark-foreground-hover-1: 255 255 255;
+    --color-dark-foreground-base-3: 173 173 173;
+    --color-dark-foreground-base-2: 214 214 214;
+    --color-dark-foreground-base-1: 255 255 255;
+    --color-dark-foreground-disabled: 92 92 92;
+  }
+}
