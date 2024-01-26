@@ -1,9 +1,9 @@
-type Btn = {
-  type: "default" | "FAB";
-};
+// type Btn = {
+//   type: "default" | "FAB";
+// };
 
-const bool = true;
+// const bool = true;
 
-export default function Button({ children, type: Btn = "default" }) {
-  return <button className="">{children}</button>;
-}
+// export default function Button({ children, type: Btn = "default" }) {
+//   return <button className="">{children}</button>;
+// }

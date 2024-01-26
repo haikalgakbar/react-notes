@@ -1,7 +1,5 @@
 import { DotsThree } from "@phosphor-icons/react";
 
-import React from "react";
-
 export default function NotesCard({ detailNotes, close }) {
   return (
     <article

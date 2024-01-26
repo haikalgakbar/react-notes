@@ -1,6 +1,8 @@
 import { FunnelSimple, Moon, Sun } from "@phosphor-icons/react";
 import { THEME } from "../utils/const";
 
+import React from "react";
+
 export default function Header({
   allNotes,
   darkMode,
