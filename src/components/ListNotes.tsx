@@ -2,10 +2,6 @@ import { LOCAL_STORAGE_KEY as key } from "../utils/const";
 import { notesObj } from "../utils/notesType";
 
 export default function ListNotes({ openDetail, viewNotes, filter }) {
-  // const allNotes: notesObj[] = Array.from(
-  //   JSON.parse(localStorage.getItem(key)),
-  // );
-
   const allNotes: notesObj[] = filterNotes(
     JSON.parse(localStorage.getItem(key)),
     filter,

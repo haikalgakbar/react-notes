@@ -1,28 +1,28 @@
 import { useEffect, useRef, useState } from "react";
-import { LOCAL_STORAGE_KEY } from "./utils/const";
+import { LOCAL_STORAGE_KEY } from "./utils/const.js";
 import { Check } from "@phosphor-icons/react";
 
-import Header from "./views/Header";
+import Header from "./components/header/Header";
 import AddNotesButton from "./components/AddNotesButton";
 import EmptyNotes from "./components/EmptyNotes";
 import ListNotes from "./components/ListNotes";
 import AddNotes from "./components/AddNotes";
 import ViewNotes from "./components/ViewNotes";
 import BottomSheet from "./template/BottomSheet";
-import OptionMenu from "./template/OptionMenu";
+import OptionMenu from "./components/OptionMenu.js";
 
 export default function App() {
   const [isAddNotesOpen, setIsAddNotesOpen] = useState(false);
   const [isViewNotesOpen, setIsViewNotesOpen] = useState(false);
-  const [isOptionOpen, setIsOptionOpen] = useState(false);
+  // const [isOptionOpen, setIsOptionOpen] = useState(false);
   const [notesId, setNotesId] = useState();
   const [isDarkMode, setIsDarkMode] = useState(localStorage.theme);
   const [filter, setFilter] = useState("");
 
-  const menuRef = useRef(null);
+  // const menuRef = useRef(null);
 
   const allNotes =
-    Array.from(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))) ?? [];
+    Array.from(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))) || [];
 
   useEffect(() => {
     isDarkMode
@@ -30,30 +30,32 @@ export default function App() {
       : document.documentElement.classList.remove("dark");
   }, [isDarkMode]);
 
-  useEffect(() => {
-    const closeMenu = (e) => {
-      if (!menuRef.current?.contains(e.target)) {
-        setIsOptionOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const closeMenu = (e) => {
+  //     if (!menuRef.current?.contains(e.target)) {
+  //       setIsOptionOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", closeMenu);
+  //   document.addEventListener("mousedown", closeMenu);
 
-    return () => {
-      document.removeEventListener("mousedown", closeMenu);
-    };
-  }, [isOptionOpen]);
+  //   return () => {
+  //     document.removeEventListener("mousedown", closeMenu);
+  //   };
+  // }, [isOptionOpen]);
 
   return (
-    <section className="flex flex-col max-w-[425px] max-h-dvh">
+    <section className="flex flex-col-reverse max-w-[425px] max-h-dvh">
       <Header
         allNotes={allNotes}
         darkMode={isDarkMode}
         changeMode={setIsDarkMode}
-        menuStatus={isOptionOpen}
-        openMenu={setIsOptionOpen}
+        // menuStatus={isOptionOpen}
+        // openMenu={setIsOptionOpen}
+        filter={filter}
+        setFilter={setFilter}
       />
-      {isOptionOpen && (
+      {/* {isOptionOpen && (
         <OptionMenu getRef={menuRef}>
           <p className="px-2 py-1 text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
             Sort by
@@ -83,7 +85,7 @@ export default function App() {
             Z-A
           </button>
         </OptionMenu>
-      )}
+      )} */}
       {allNotes.length ? (
         <ListNotes
           openDetail={setIsViewNotesOpen}
@@ -93,10 +95,10 @@ export default function App() {
       ) : (
         <EmptyNotes />
       )}
-      <AddNotesButton
+      {/* <AddNotesButton
         openAddNotes={setIsAddNotesOpen}
         selectedNotes={setNotesId}
-      />
+      /> */}
       {isAddNotesOpen && (
         <BottomSheet>
           <AddNotes isOpen={setIsAddNotesOpen} note={notesId} />
@@ -112,6 +114,7 @@ export default function App() {
         </BottomSheet>
       )}
     </section>
+    // <h1>Hello</h1>
   );
 }
 

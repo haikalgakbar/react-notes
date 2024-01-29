@@ -9,7 +9,7 @@
       // window.matchMedia("(prefers-color-scheme: dark)")
       //   ? (localStorage.theme = "dark")
       //   : (localStorage.theme = "light");
-      localStorage.theme = "light";
+      // localStorage.theme = "light";
 
       // if (
       //   localStorage.theme === "dark" ||
@@ -20,17 +20,17 @@
       // } else {
       //   document.documentElement.classList.remove("dark");
       // }
-      if (localStorage.theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
+      // if (localStorage.theme === "dark") {
+      //   document.documentElement.classList.add("dark");
+      // } else {
+      //   document.documentElement.classList.remove("dark");
+      // }
     </script>
   </head>
   <body>
     <main
       id="root"
-      class="flex flex-col bg-background-base-3-light dark:bg-background-base-3-dark items-center max-h-dvh"
+      class="flex justify-center items-center bg-background-base-3-light dark:bg-background-base-3-dark max-h-dvh"
     ></main>
     <script type="module" src="/src/main.tsx"></script>
   </body>
