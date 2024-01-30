@@ -2,7 +2,7 @@ import { X, CheckCircle } from "@phosphor-icons/react";
 import { notesObj } from "../utils/notesType";
 import { useEffect, useRef, useState } from "react";
 
-import { LOCAL_STORAGE_KEY as key } from "../utils/const";
+import { NOTES_KEY as key } from "../utils/const";
 
 export default function AddNotes({ isOpen, note }) {
   const textAreaTitleRef = useRef(null);

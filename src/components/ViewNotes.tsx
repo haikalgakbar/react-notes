@@ -1,7 +1,7 @@
 import { DotsThree, ArrowLeft } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 
-import { LOCAL_STORAGE_KEY as key } from "../utils/const";
+import { NOTES_KEY as key } from "../utils/const";
 
 export default function ViewNotes({ isOpen, note, edit }) {
   const [isOptionOpen, setIsOptionOpen] = useState(false);
