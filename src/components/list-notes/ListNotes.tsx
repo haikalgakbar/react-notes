@@ -11,17 +11,6 @@ export default function ListNotes({ openDetail, viewNotes, display }) {
     sort,
   );
 
-  function findNotesId(id) {
-    const [result] = allNotes.filter((notes) => notes.id === id);
-    viewNotes(result);
-    openDetail(true);
-  }
-
-  const wordCount = (item) => {
-    const count = item.split(" ").length;
-    return count === 1 ? `${count} word` : `${count} words`;
-  };
-
   function filterNotes(notes, filterType) {
     let filteredNote = [...notes];
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Section from "./Section";
 import OptionMenu from "../OptionMenu";
-import { Check, SortAscending } from "@phosphor-icons/react";
+import { Check } from "@phosphor-icons/react";
 import { DISPLAY_KEY } from "../../utils/const";
 
 export default function Header({
