@@ -15,7 +15,7 @@ export default function Grids({ notes, openDetail, viewNotes }) {
       {notes.map((note) => (
         <article
           key={note.id}
-          className="flex h-fit cursor-pointer flex-col rounded-xl bg-background-base-1-light shadow-md hover:bg-background-hover-1-light dark:bg-background-base-1-dark dark:hover:bg-background-hover-1-dark"
+          className="flex h-fit cursor-pointer break-inside-avoid flex-col rounded-xl bg-background-base-1-light shadow-md hover:bg-background-hover-1-light dark:bg-background-base-1-dark dark:hover:bg-background-hover-1-dark"
         >
           <div className="p-4" onClick={() => findNotesId(note.id)}>
             <h1 className="text-lg font-semibold text-foreground-base-1-light dark:text-foreground-base-1-dark">
