@@ -11,17 +11,17 @@ export default function Grids({ notes, openDetail, viewNotes }) {
   };
 
   return (
-    <section className="m-4 mb-0 flex-1 columns-2 break-before-avoid gap-2 space-y-2 overflow-scroll">
+    <section className="flex-1 columns-2 break-before-avoid gap-2 space-y-2 overflow-scroll p-4">
       {notes.map((note) => (
         <article
           key={note.id}
-          className="flex h-fit cursor-pointer break-inside-avoid flex-col rounded-xl bg-background-base-1-light shadow-md hover:bg-background-hover-1-light dark:bg-background-base-1-dark dark:hover:bg-background-hover-1-dark"
+          className="flex cursor-pointer break-inside-avoid flex-col rounded-xl bg-background-base-1-light shadow-md hover:bg-background-hover-1-light dark:bg-background-base-1-dark dark:hover:bg-background-hover-1-dark"
         >
           <div className="p-4" onClick={() => findNotesId(note.id)}>
-            <h1 className="text-lg font-semibold text-foreground-base-1-light dark:text-foreground-base-1-dark">
+            <h1 className="text-md font-semibold text-foreground-base-1-light dark:text-foreground-base-1-dark">
               {note.title}
             </h1>
-            <p className="line-clamp-3 text-foreground-base-2-light dark:text-foreground-base-2-dark">
+            <p className="line-clamp-3 text-sm text-foreground-base-2-light dark:text-foreground-base-2-dark">
               {note.content}
             </p>
           </div>
