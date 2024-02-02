@@ -6,7 +6,6 @@ import EmptyNotes from "./components/EmptyNotes";
 import ListNotes from "./components/list-notes/ListNotes.js";
 import AddNotes from "./components/AddNotes";
 import ViewNotes from "./components/ViewNotes";
-import BottomSheet from "./template/BottomSheet";
 
 export default function App() {
   const [isAddNotesOpen, setIsAddNotesOpen] = useState(false);
@@ -17,8 +16,9 @@ export default function App() {
     JSON.parse(localStorage.getItem(DISPLAY_KEY)) ?? { view: "row", sort: "" },
   );
 
-  const allNotes =
-    Array.from(JSON.parse(localStorage.getItem(NOTES_KEY))) || [];
+  const allNotes = Array.from(
+    JSON.parse(localStorage.getItem(NOTES_KEY)) ?? [],
+  );
 
   useEffect(() => {
     isDarkMode
@@ -47,13 +47,11 @@ export default function App() {
       )}
       {isAddNotesOpen && <AddNotes isOpen={setIsAddNotesOpen} note={notesId} />}
       {isViewNotesOpen && (
-        <BottomSheet>
-          <ViewNotes
-            isOpen={setIsViewNotesOpen}
-            note={notesId}
-            edit={setIsAddNotesOpen}
-          />
-        </BottomSheet>
+        <ViewNotes
+          isOpen={setIsViewNotesOpen}
+          note={notesId}
+          edit={setIsAddNotesOpen}
+        />
       )}
     </section>
   );

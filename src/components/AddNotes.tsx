@@ -104,16 +104,21 @@ export default function AddNotes({ isOpen, note }) {
           rows={1}
           ref={textAreaTitleRef}
         />
-        <div>
+        <div className="flex gap-2">
           <h1 className="text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
-            {`${currentDate.slice(0, 3)}, ${currentDate.slice(8, 10)} ${currentDate.slice(4, 7)}`}{" "}
-            | {wordCount(valueContent)}
+            {`${currentDate.slice(0, 3)}, ${currentDate.slice(8, 10)} ${currentDate.slice(4, 7)}`}
+          </h1>
+          <h1 className="text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
+            |
+          </h1>
+          <h1 className="text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
+            {wordCount(valueContent)}
           </h1>
         </div>
         <textarea
           id="content"
           placeholder="start writing..."
-          className="resize-none overflow-hidden bg-background-base-1-light text-foreground-base-2-light focus:outline-none dark:bg-background-base-1-dark dark:text-foreground-base-2-dark"
+          className="mt-2 resize-none overflow-hidden bg-background-base-1-light text-foreground-base-2-light focus:outline-none dark:bg-background-base-1-dark dark:text-foreground-base-2-dark"
           value={valueContent}
           onChange={(e) => setValueContent(e.target.value)}
           rows={1}

@@ -95,7 +95,7 @@ export default function Header({
   }
 
   return (
-    <header className="sticky z-10 flex flex-col gap-4 rounded-t-xl bg-background-base-1-light p-4 dark:bg-background-base-1-dark">
+    <header className="sticky z-10 flex w-full flex-col gap-4 rounded-t-xl bg-background-base-1-light p-4 dark:bg-background-base-1-dark">
       <section className="flex items-center gap-2 rounded-full bg-background-base-3-dark px-4 py-2 focus:outline focus:outline-slate-400 focus:ring-1">
         <MagnifyingGlass className=" text-foreground-base-3-dark" size={20} />
         <input
