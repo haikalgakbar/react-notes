@@ -15,7 +15,7 @@ export default function Rows({ notes, openDetail, viewNotes }) {
       {notes.map((note) => (
         <article
           key={note.id}
-          className="flex cursor-pointer flex-col gap-2 rounded-xl bg-background-base-1-light p-4 shadow-md hover:bg-background-hover-1-light dark:bg-background-base-1-dark dark:hover:bg-background-hover-1-dark"
+          className="flex cursor-pointer flex-col rounded-xl bg-background-base-1-light p-4 shadow-md hover:bg-background-hover-1-light dark:bg-background-base-1-dark dark:hover:bg-background-hover-1-dark"
           onClick={() => findNotesId(note.id)}
         >
           <h1 className="text-md font-semibold text-foreground-base-1-light dark:text-foreground-base-1-dark">
@@ -24,7 +24,7 @@ export default function Rows({ notes, openDetail, viewNotes }) {
           <p className="line-clamp-3 text-sm text-foreground-base-2-light dark:text-foreground-base-2-dark">
             {note.content}
           </p>
-          <div className="flex justify-start gap-1">
+          <div className="mt-2 flex justify-start gap-1">
             <p className="text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
               {note.date.slice(8, 10)}
               {note.date.slice(3, 7)}

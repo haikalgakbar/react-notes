@@ -4,8 +4,10 @@ import {
   SlidersHorizontal,
   MagnifyingGlass,
   NotePencil,
-  Check,
   SquaresFour,
+  Rows,
+  SortAscending,
+  SortDescending,
 } from "@phosphor-icons/react";
 import { DISPLAY_KEY } from "../../utils/const";
 
@@ -17,41 +19,12 @@ export default function Header({
   display,
   setDisplay,
 }) {
-  const [openSortMenu, setOpenSortMenu] = useState(false);
-  const [openViewMenu, setOpenViewMenu] = useState(false);
+  const { view, sort } = display;
   const [openDisplayMenu, setOpenDisplayMenu] = useState(false);
-  const sortRef = useRef(null);
-  const viewRef = useRef(null);
+  const [viewFilter, setViewFilter] = useState(view);
+  const [sortFilter, setSortFilter] = useState(sort);
   const displayRef = useRef(null);
   const countNotes = allNotes.length;
-
-  useEffect(() => {
-    const closeMenu = (e) => {
-      if (!viewRef.current?.contains(e.target)) {
-        setOpenViewMenu(false);
-      }
-    };
-
-    document.addEventListener("mouseup", closeMenu);
-
-    return () => {
-      document.removeEventListener("mouseup", closeMenu);
-    };
-  }, [openViewMenu]);
-
-  useEffect(() => {
-    const closeMenu = (e) => {
-      if (!sortRef.current?.contains(e.target)) {
-        setOpenSortMenu(false);
-      }
-    };
-
-    document.addEventListener("mouseup", closeMenu);
-
-    return () => {
-      document.removeEventListener("mouseup", closeMenu);
-    };
-  }, [openSortMenu]);
 
   useEffect(() => {
     const closeMenu = (e) => {
@@ -66,16 +39,6 @@ export default function Header({
       document.removeEventListener("mouseup", closeMenu);
     };
   }, [openDisplayMenu]);
-
-  function changeView(type: "row" | "grid"): void {
-    if (display.view !== type) {
-      setDisplay({ ...display, view: type });
-      localStorage.setItem(
-        DISPLAY_KEY,
-        JSON.stringify({ ...display, view: type }),
-      );
-    }
-  }
 
   // function changeSort(type: "asc" | "des" | ""): void {
   //   if (display.sort === type) {
@@ -92,6 +55,32 @@ export default function Header({
   //     );
   //   }
   // }
+
+  // console.log(view);
+  // console.log(viewFilter);
+
+  function isRadioSortSelected(value: string): boolean {
+    return value === sortFilter;
+  }
+
+  function handleSortRadioOnClick(e) {
+    setSortFilter(e.currentTarget.value);
+  }
+
+  function isRadioViewSelected(value: string): boolean {
+    return value === viewFilter;
+  }
+
+  function handleViewRadioOnClick(e) {
+    const target = e.currentTarget.value;
+
+    setViewFilter(target);
+    setDisplay({ ...display, view: target });
+    localStorage.setItem(
+      DISPLAY_KEY,
+      JSON.stringify({ ...display, view: target }),
+    );
+  }
 
   return (
     <header className="sticky z-10 flex w-full flex-col gap-4 rounded-t-xl bg-background-base-1-light p-4 dark:bg-background-base-1-dark">
@@ -125,68 +114,139 @@ export default function Header({
         <OptionMenu
           getRef={displayRef}
           className={
-            "absolute bottom-16 left-4 flex min-w-36 flex-col rounded-md border-[.5px] border-stroke-base-3-light bg-background-base-1-light p-1 shadow-md dark:border-stroke-base-3-dark dark:bg-background-base-1-dark"
+            "minw absolute bottom-16 left-4 flex min-w-48 flex-col rounded-md border-[.5px] border-stroke-base-3-light bg-background-base-1-light p-1 shadow-md dark:border-stroke-base-3-dark dark:bg-background-base-1-dark"
           }
         >
-          <p className="right px-2 py-1 text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
-            Sort
-          </p>
-          <button
-            className="flex items-center justify-between gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark"
-            onClick={() => changeView("row")}
-          >
-            A to Z
-            {display.view === "row" && (
-              <Check className="flex-shrink-0" size={20} />
-            )}
-          </button>
-          <button
-            className="flex items-center justify-between gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark"
-            onClick={() => changeView("grid")}
-          >
-            Z to A
-            {display.view === "grid" && (
-              <Check className="flex-shrink-0" size={20} />
-            )}
-          </button>
-          <p className="right px-2 py-1 text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
-            View
-          </p>
-          <button
-            className="flex items-center justify-between gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark"
-            onClick={() => changeView("row")}
-          >
-            Row
-            {display.view === "row" && (
-              <Check className="flex-shrink-0" size={20} />
-            )}
-          </button>
-          <button className="flex flex-wrap items-center gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark">
-            <SquaresFour size={20} />
-            <p className="flex-1 text-start">Grid</p>
-            <div className="flex items-center">
-              <div className="relative flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-white dark:bg-gray-100">
-                <input
-                  aria-labelledby="label1"
-                  checked
-                  type="radio"
-                  name="radio"
-                  className="absolute h-full w-full cursor-pointer appearance-none rounded-full border border-gray-400 checked:border-none focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-offset-2"
-                />
-                <div className="z-1 hidden h-full w-full rounded-full border-4 border-indigo-700"></div>
-              </div>
+          <fieldset className="flex flex-col">
+            <legend className="w-full flex-1 px-2 py-1 text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
+              Sort
+            </legend>
+            <div className="flex items-center justify-between gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark">
+              <SortAscending size={20} />
               <label
-                id="label1"
-                className="ml-2 text-sm font-normal leading-4 text-gray-800 dark:text-gray-100"
+                className="flex-1 text-start hover:cursor-pointer"
+                htmlFor="asc"
               >
-                On
+                A to Z
               </label>
+              <input
+                type="radio"
+                name="asc"
+                id="asc"
+                value="asc"
+                checked={isRadioSortSelected("asc")}
+                onChange={(e) => handleSortRadioOnClick(e)}
+              />
             </div>
-          </button>
+            <div className="flex flex-wrap items-center gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:cursor-pointer hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark">
+              <SortDescending size={20} />
+              <label
+                className="flex-1 text-start hover:cursor-pointer"
+                htmlFor="des"
+              >
+                Z to A
+              </label>
+              <input
+                type="radio"
+                name="des"
+                id="des"
+                value="des"
+                checked={isRadioSortSelected("des")}
+                onChange={(e) => handleSortRadioOnClick(e)}
+              />
+            </div>
+          </fieldset>
+          <fieldset className="flex flex-col">
+            <legend className="w-full flex-1 px-2 py-1 text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
+              View
+            </legend>
+            <div className="flex items-center justify-between gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark">
+              <label
+                className="flex flex-1 flex-row gap-1 text-start hover:cursor-pointer"
+                htmlFor="row"
+              >
+                <Rows size={20} />
+                Row
+              </label>
+              <input
+                type="radio"
+                name="row"
+                id="row"
+                value="row"
+                checked={isRadioViewSelected("row")}
+                onChange={(e) => handleViewRadioOnClick(e)}
+              />
+            </div>
+            <div className="flex flex-wrap items-center gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:cursor-pointer hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark">
+              <label
+                className="flex flex-1 flex-row gap-1 text-start hover:cursor-pointer"
+                htmlFor="grid"
+              >
+                <SquaresFour size={20} />
+                Grid
+              </label>
+              <input
+                type="radio"
+                name="grid"
+                id="grid"
+                value="grid"
+                checked={isRadioViewSelected("grid")}
+                onChange={(e) => handleViewRadioOnClick(e)}
+              />
+            </div>
+          </fieldset>
         </OptionMenu>
       )}
     </header>
   );
+}
+
+{
+  /* <fieldset className="flex flex-col">
+<legend className="w-full flex-1 px-2 py-1 text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
+  View
+</legend>
+<button
+  className="flex items-center justify-between gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark"
+  // onClick={(e) => e.preventDefault()}
+>
+  <Rows size={20} />
+  <label
+    className="flex-1 text-start hover:cursor-pointer"
+    htmlFor="row"
+  >
+    Row
+  </label>
+  <input
+    type="radio"
+    name="row"
+    id="row"
+    value="row"
+    checked={isRadioSelected("row")}
+    onChange={(e) => handleRadioOnClick(e)}
+  />
+</button>
+<button
+  className="flex flex-wrap items-center gap-1 rounded-md p-2 text-sm text-foreground-base-1-light hover:cursor-pointer hover:bg-background-hover-1-light dark:text-foreground-base-1-dark dark:hover:bg-background-hover-1-dark"
+  // onClick={(e) => handleRadioOnClick(e)}
+>
+  <SquaresFour size={20} />
+  <label
+    className="flex-1 text-start hover:cursor-pointer"
+    htmlFor="grid"
+  >
+    Grid
+  </label>
+  <input
+    type="radio"
+    name="grid"
+    id="grid"
+    value="grid"
+    checked={isRadioSelected("grid")}
+    onChange={(e) => handleRadioOnClick(e)}
+  />
+</button>
+</fieldset> */
 }
 
 {

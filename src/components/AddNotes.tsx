@@ -31,26 +31,25 @@ export default function AddNotes({ isOpen, note }) {
   }, [valueContent]);
 
   function handleAddNotes() {
-    console.log("add notes");
-    if (note.id) {
-      const newNotes: notesObj = {
-        id: note.id,
-        title: valueTitle,
-        content: valueContent,
-        date: currentDate,
-      };
+    // if (note.id) {
+    //   const newNotes: notesObj = {
+    //     id: note.id,
+    //     title: valueTitle,
+    //     content: valueContent,
+    //     date: currentDate,
+    //   };
 
-      const findNotes = allNotes.findIndex((notes) => notes.id === note.id);
+    //   const findNotes = allNotes.findIndex((notes) => notes.id === note.id);
 
-      const newNote = allNotes;
-      newNote.splice(findNotes, 1, newNotes);
-      localStorage.setItem(key, JSON.stringify(newNote));
-      setValueTitle("");
-      setValueContent("");
-      isOpen(false);
+    //   const newNote = allNotes;
+    //   newNote.splice(findNotes, 1, newNotes);
+    //   localStorage.setItem(key, JSON.stringify(newNote));
+    //   setValueTitle("");
+    //   setValueContent("");
+    //   isOpen(false);
 
-      return;
-    }
+    //   return;
+    // }
 
     const newNotes: notesObj = {
       id: self.crypto.randomUUID(),
