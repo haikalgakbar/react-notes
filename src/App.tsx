@@ -11,7 +11,7 @@ export default function App() {
   const [isAddNotesOpen, setIsAddNotesOpen] = useState(false);
   const [isViewNotesOpen, setIsViewNotesOpen] = useState(false);
   const [notesId, setNotesId] = useState();
-  const [isDarkMode, setIsDarkMode] = useState(localStorage.theme);
+  const [isDarkMode, _setIsDarkMode] = useState(localStorage.theme);
   const [display, setDisplay] = useState(
     JSON.parse(localStorage.getItem(DISPLAY_KEY)) ?? { view: "row", sort: "" },
   );
@@ -30,8 +30,8 @@ export default function App() {
     <section className="relative flex max-h-dvh min-h-dvh max-w-[425px] flex-col-reverse">
       <Header
         allNotes={allNotes}
-        darkMode={isDarkMode}
-        changeMode={setIsDarkMode}
+        // darkMode={isDarkMode}
+        // changeMode={setIsDarkMode}
         openNewNotes={setIsAddNotesOpen}
         display={display}
         setDisplay={setDisplay}

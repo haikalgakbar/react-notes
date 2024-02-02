@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import HeaderAction from "./HeaderAction";
 import OptionMenu from "../OptionMenu";
 import {
   SlidersHorizontal,
@@ -12,8 +11,8 @@ import { DISPLAY_KEY } from "../../utils/const";
 
 export default function Header({
   allNotes,
-  darkMode,
-  changeMode,
+  // darkMode,
+  // changeMode,
   openNewNotes,
   display,
   setDisplay,
@@ -78,21 +77,21 @@ export default function Header({
     }
   }
 
-  function changeSort(type: "asc" | "des" | ""): void {
-    if (display.sort === type) {
-      setDisplay({ ...display, sort: "" });
-      localStorage.setItem(
-        DISPLAY_KEY,
-        JSON.stringify({ ...display, sort: "" }),
-      );
-    } else {
-      setDisplay({ ...display, sort: type });
-      localStorage.setItem(
-        DISPLAY_KEY,
-        JSON.stringify({ ...display, sort: type }),
-      );
-    }
-  }
+  // function changeSort(type: "asc" | "des" | ""): void {
+  //   if (display.sort === type) {
+  //     setDisplay({ ...display, sort: "" });
+  //     localStorage.setItem(
+  //       DISPLAY_KEY,
+  //       JSON.stringify({ ...display, sort: "" }),
+  //     );
+  //   } else {
+  //     setDisplay({ ...display, sort: type });
+  //     localStorage.setItem(
+  //       DISPLAY_KEY,
+  //       JSON.stringify({ ...display, sort: type }),
+  //     );
+  //   }
+  // }
 
   return (
     <header className="sticky z-10 flex w-full flex-col gap-4 rounded-t-xl bg-background-base-1-light p-4 dark:bg-background-base-1-dark">
