@@ -12,7 +12,7 @@ export default function AddNotes({ isOpen, note }) {
 
   const currentDate = new Date().toDateString();
 
-  const allNotes = JSON.parse(localStorage.getItem(key)) ?? [];
+  // const allNotes = JSON.parse(localStorage.getItem(key)) ?? [];
 
   useEffect(() => {
     if (textAreaTitleRef.current) {
