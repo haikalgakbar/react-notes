@@ -45,11 +45,7 @@ export default function App() {
       ) : (
         <EmptyNotes />
       )}
-      {isAddNotesOpen && (
-        <BottomSheet>
-          <AddNotes isOpen={setIsAddNotesOpen} note={notesId} />
-        </BottomSheet>
-      )}
+      {isAddNotesOpen && <AddNotes isOpen={setIsAddNotesOpen} note={notesId} />}
       {isViewNotesOpen && (
         <BottomSheet>
           <ViewNotes

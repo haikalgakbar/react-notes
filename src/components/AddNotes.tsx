@@ -1,4 +1,4 @@
-import { X, CheckCircle } from "@phosphor-icons/react";
+import { ArrowLeft, Check } from "@phosphor-icons/react";
 import { notesObj } from "../utils/notesType";
 import { useEffect, useRef, useState } from "react";
 
@@ -49,7 +49,7 @@ export default function AddNotes({ isOpen, note }) {
       setValueContent("");
       isOpen(false);
 
-      // return;
+      return;
     }
 
     const newNotes: notesObj = {
@@ -73,45 +73,53 @@ export default function AddNotes({ isOpen, note }) {
     isOpen(false);
   }
 
+  function wordCount(words) {
+    const count = words.split("").length;
+    return count > 1 ? `${count} characters` : `${count} character`;
+  }
+
   return (
-    <>
-      <form className="fixed top-6 right-0 bottom-0 left-0 pb-6 bg-background-base-1-light dark:bg-background-base-1-dark rounded-t-2xl overflow-scroll">
-        <header className="fixed top-6 bg-background-base-1-light dark:bg-background-base-1-dark flex w-full justify-between items-center p-4 rounded-t-2xl">
-          <button type="button" onClick={handleClose}>
-            <X
-              className="text-foreground-base-1-light dark:text-foreground-base-1-dark"
-              size={24}
-            />
-          </button>
-          <h1 className="text-foreground-base-1-light dark:text-foreground-base-1-dark font-semibold">{`${currentDate.slice(0, 3)}, ${currentDate.slice(8, 10)} ${currentDate.slice(4, 7)}`}</h1>
-          <button type="submit" onClick={handleAddNotes}>
-            <CheckCircle
-              className="text-foreground-base-1-light dark:text-foreground-base-1-dark"
-              size={24}
-            />
-          </button>
-        </header>
-        <section className="mt-14 px-4 flex flex-col gap-2">
-          <textarea
-            id="title"
-            placeholder="Title"
-            className="bg-background-base-1-light dark:bg-background-base-1-dark text-2xl font-semibold focus:outline-none resize-none overflow-hidden text-foreground-base-1-light dark:text-foreground-base-1-dark"
-            value={valueTitle}
-            onChange={(e) => setValueTitle(e.target.value)}
-            rows={1}
-            ref={textAreaTitleRef}
+    <form className="absolute z-10 flex max-h-dvh min-h-dvh w-full flex-col  overflow-scroll bg-background-base-1-light dark:bg-background-base-1-dark">
+      <header className="sticky top-0 flex items-center justify-between bg-background-base-1-light p-4 dark:bg-background-base-1-dark">
+        <button type="button" onClick={handleClose}>
+          <ArrowLeft
+            className="text-foreground-base-1-light dark:text-foreground-base-1-dark"
+            size={24}
           />
-          <textarea
-            id="content"
-            placeholder="start writing..."
-            className="bg-background-base-1-light dark:bg-background-base-1-dark focus:outline-none resize-none overflow-hidden text-foreground-base-2-light dark:text-foreground-base-2-dark"
-            value={valueContent}
-            onChange={(e) => setValueContent(e.target.value)}
-            rows={1}
-            ref={textAreaContentRef}
+        </button>
+        <button type="submit" onClick={handleAddNotes}>
+          <Check
+            className="text-foreground-base-1-light dark:text-foreground-base-1-dark"
+            size={24}
           />
-        </section>
-      </form>
-    </>
+        </button>
+      </header>
+      <section className="flex flex-1 flex-col gap-2 p-4">
+        <textarea
+          id="title"
+          placeholder="Title"
+          className="resize-none overflow-hidden bg-background-base-1-light text-2xl font-semibold text-foreground-base-1-light focus:outline-none dark:bg-background-base-1-dark dark:text-foreground-base-1-dark"
+          value={valueTitle}
+          onChange={(e) => setValueTitle(e.target.value)}
+          rows={1}
+          ref={textAreaTitleRef}
+        />
+        <div>
+          <h1 className="text-sm text-foreground-base-3-light dark:text-foreground-base-3-dark">
+            {`${currentDate.slice(0, 3)}, ${currentDate.slice(8, 10)} ${currentDate.slice(4, 7)}`}{" "}
+            | {wordCount(valueContent)}
+          </h1>
+        </div>
+        <textarea
+          id="content"
+          placeholder="start writing..."
+          className="resize-none overflow-hidden bg-background-base-1-light text-foreground-base-2-light focus:outline-none dark:bg-background-base-1-dark dark:text-foreground-base-2-dark"
+          value={valueContent}
+          onChange={(e) => setValueContent(e.target.value)}
+          rows={1}
+          ref={textAreaContentRef}
+        />
+      </section>
+    </form>
   );
 }

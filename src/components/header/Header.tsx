@@ -111,7 +111,7 @@ export default function Header({
             size={24}
           />
         </button>
-        <h1 className="flex-1 text-center text-xl font-semibold text-foreground-base-1-light dark:text-foreground-base-1-dark">
+        <h1 className="flex-1 text-center text-sm text-foreground-base-1-light dark:text-foreground-base-1-dark">
           {countNotes}
           {countNotes < 1 ? ` Note` : ` Notes`}
         </h1>
