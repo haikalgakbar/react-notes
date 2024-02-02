@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Section from "./Section";
+import HeaderAction from "./HeaderAction";
 import OptionMenu from "../OptionMenu";
 import { Check } from "@phosphor-icons/react";
 import { DISPLAY_KEY } from "../../utils/const";
@@ -48,7 +48,6 @@ export default function Header({
 
   function changeView(type: "row" | "grid"): void {
     if (display.view !== type) {
-      console.log("isinde");
       setDisplay({ ...display, view: type });
       localStorage.setItem(
         DISPLAY_KEY,
@@ -80,7 +79,7 @@ export default function Header({
           {countNotes}
           {countNotes < 1 ? ` Note` : ` Notes`}
         </h1>
-        <Section
+        <HeaderAction
           allNotes={allNotes}
           darkMode={darkMode}
           changeMode={changeMode}

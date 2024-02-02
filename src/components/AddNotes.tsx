@@ -31,6 +31,7 @@ export default function AddNotes({ isOpen, note }) {
   }, [valueContent]);
 
   function handleAddNotes() {
+    console.log("add notes");
     if (note.id) {
       const newNotes: notesObj = {
         id: note.id,
@@ -48,7 +49,7 @@ export default function AddNotes({ isOpen, note }) {
       setValueContent("");
       isOpen(false);
 
-      return;
+      // return;
     }
 
     const newNotes: notesObj = {
